@@ -1,0 +1,66 @@
+# Author: Gustavo Roo Gonzalez
+# Date: 07 November 2021
+# Title: roogonzalez-composers.yaml
+# Description: Operations for the Composer API in a YAML file
+
+openapi: 3.0.0
+info:
+  title: Composer API
+  version: "1.0"
+  description: Composer API with YAML
+tags:
+  - name: Composers
+# Beginning of paths section
+paths:
+  # /composers path/ Defining the get and post methods for operations: FindAllComposers & createComposer
+  /composers:
+    get:
+      summary: Returns a list of composer documents
+      description: API for returning a list of composers from MongoDB Atlas
+      responses:
+        "200":
+          description: Composer Documents
+        "500":
+          description: Server Exception
+        "501":
+          description: MongoDB Exception
+    post:
+      summary: Creates a new composer object
+      description: API for adding new composer objects
+      requestBody:
+        description: Composer's Information
+        content:
+          applications/json:
+            schema:
+              type: "object"
+              properties:
+                firstName:
+                  type: "string"
+                lastName:
+                  type: "string"
+      responses:
+        "200":
+          description: Composer Added
+        "500":
+          description: Server Exception
+        "501":
+          description: MongoDB Exception
+  # /composers/{id} to define the 'get' method for operation findComposerById
+  /composers/{id}:
+    get:
+      summary: Returns a composer document
+      description: API for returning a composer object from MongoDB
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The composerid requested by the user
+      responses:
+        "200":
+          description: Composer Document in JSON format
+        "500":
+          description: Server Exception
+        "501":
+          description: MongoDB Exception
