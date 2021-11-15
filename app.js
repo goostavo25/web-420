@@ -27,6 +27,16 @@ app.use(express.json());
 //Set the app to use express.urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+//Connect to MongoDB
+var mongoDB = "mongodb+srv://web420_user:p455w0rd@buwebdev-cluster-1.umga8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose.connect(mongoDB, {});
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error: "));
+db.once("open", function () {
+  console.log("Application connected to MongoDB instance");
+});
+
 //Defining object named options
 const options = {
   definition: {
