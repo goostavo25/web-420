@@ -17,10 +17,6 @@ const router = express.Router();
 
 const Composer = require("../models/roogonzalez-composer");
 
-//Connect to MongoDB
-var mongoDB = "mongodb+srv://web420_user:p455w0rd@buwebdev-cluster-1.umga8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, {});
-
 /**
  * @openapi
  * /api/composers:

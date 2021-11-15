@@ -16,12 +16,9 @@ const Schema = mongoose.Schema;
 
 // Declaring composerSchema
 const composerSchema = new Schema({
-  firstName: String,
-  lastName: String,
+  firstName: { type: String },
+  lastName: { type: String },
 });
 
-// Create Composer - assign mongoose.Schema object
-const Composer = mongoose.model("Composer", composerSchema);
-
 // Export Composer model
-module.exports = Composer;
+module.exports = mongoose.model("Composer", composerSchema);

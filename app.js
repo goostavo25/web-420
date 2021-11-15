@@ -11,9 +11,10 @@
 // Requirement statements
 var express = require("express");
 var http = require("http");
-var swaggerUIExpress = require("swagger-ui-express");
+var swaggerUI = require("swagger-ui-express");
 var swaggerJSDoc = require("swagger-jsdoc");
 var mongoose = require("mongoose");
+var composerAPI = require("./routes/roogonzalez-composer-routes");
 
 //Assigning Variable App to express library
 var app = express();
@@ -28,14 +29,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Connect to MongoDB
-var mongoDB = "mongodb+srv://web420_user:p455w0rd@buwebdev-cluster-1.umga8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, {});
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error: "));
-db.once("open", function () {
-  console.log("Application connected to MongoDB instance");
-});
+const conn = "mongodb+srv://web420_user:p455w0rd@buwebdev-cluster-1.umga8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose
+  .connect(conn, {
+    promiseLibrary: require("bluebird"),
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log(`Application connected to MongoDB instance`);
+  })
+  .catch((err) => {
+    console.log(`MongoDB Error: ${err.message}`);
+  });
 
 //Defining object named options
 const options = {
@@ -53,7 +59,8 @@ const options = {
 const openAPISpecification = swaggerJSDoc(options);
 
 //Declaring swaggerSpec variable
-app.use("/api-docs", swaggerUIExpress.serve, swaggerUIExpress.setup(openAPISpecification));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(openAPISpecification));
+app.use("/api", composerAPI);
 
 //Create server and listen on port 3000.
 http.createServer(app).listen(app.get("port"), function () {
