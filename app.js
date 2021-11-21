@@ -15,6 +15,7 @@ var swaggerUI = require("swagger-ui-express");
 var swaggerJSDoc = require("swagger-jsdoc");
 var mongoose = require("mongoose");
 var composerAPI = require("./routes/roogonzalez-composer-routes");
+var personRoutes = require("./routes/roogonzalez-person-routes");
 
 //Assigning Variable App to express library
 var app = express();
@@ -60,7 +61,7 @@ const openAPISpecification = swaggerJSDoc(options);
 
 //Declaring swaggerSpec variable
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(openAPISpecification));
-app.use("/api", composerAPI);
+app.use("/api", composerAPI, personRoutes);
 
 //Create server and listen on port 3000.
 http.createServer(app).listen(app.get("port"), function () {
