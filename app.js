@@ -21,13 +21,13 @@ var customerRoutes = require("./routes/roogonzalez-node-shopper-routes.js");
 var teamRoutes = require("./routes/roogonzalez-capstone-routes.js");
 
 //Set Port
-var port = process.env.PORT || 3000;
+const PORT = process.env.PORT || "8080";
 
 //Assigning Variable App to express library
 var app = express();
 
 //Setting the port to 3000
-app.set("port", process.env.PORT || 3000);
+app.set("port", PORT);
 
 //Set the app to use express.json
 app.use(express.json());
