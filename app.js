@@ -20,6 +20,9 @@ var userRoutes = require("./routes/roogonzalez-session-routes");
 var customerRoutes = require("./routes/roogonzalez-node-shopper-routes.js");
 var teamRoutes = require("./routes/roogonzalez-capstone-routes.js");
 
+//Set Port
+var port = process.env.PORT || 3000;
+
 //Assigning Variable App to express library
 var app = express();
 
