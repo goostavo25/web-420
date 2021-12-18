@@ -21,13 +21,10 @@ var customerRoutes = require("./routes/roogonzalez-node-shopper-routes.js");
 var teamRoutes = require("./routes/roogonzalez-capstone-routes.js");
 
 //Set Port
-const PORT = process.env.PORT || "8080";
+var port = process.env.PORT || 3000;
 
 //Assigning Variable App to express library
 var app = express();
-
-//Setting the port to 3000
-app.set("port", PORT);
 
 //Set the app to use express.json
 app.use(express.json());
@@ -70,7 +67,6 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(openAPISpecification));
 app.use("/api", [composerAPI, personRoutes, userRoutes, customerRoutes, teamRoutes]);
 
 //Create server and listen on port 3000.
-
-http.createServer(app).listen(app.get("port"), function () {
-  console.log("Application started on port" + app.get("port"));
+http.createServer(app).listen(process.env.PORT || 3000, function () {
+  console.log("Application started and listening on port %s", +app.get("port"));
 });
