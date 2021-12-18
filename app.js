@@ -70,6 +70,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(openAPISpecification));
 app.use("/api", [composerAPI, personRoutes, userRoutes, customerRoutes, teamRoutes]);
 
 //Create server and listen on port 3000.
-http.createServer(app).listen(process.env.PORT || 3000, function () {
-  console.log("Application started and listening on port %s", +app.get("port"));
+
+http.createServer(app).listen(app.get("port"), function () {
+  console.log("Application started on port" + app.get("port"));
 });
