@@ -18,6 +18,7 @@ var composerAPI = require("./routes/roogonzalez-composer-routes");
 var personRoutes = require("./routes/roogonzalez-person-routes");
 var userRoutes = require("./routes/roogonzalez-session-routes");
 var customerRoutes = require("./routes/roogonzalez-node-shopper-routes.js");
+var teamRoutes = require("./routes/roogonzalez-capstone-routes.js");
 
 //Assigning Variable App to express library
 var app = express();
@@ -63,9 +64,9 @@ const openAPISpecification = swaggerJSDoc(options);
 
 //Declaring swaggerSpec variable
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(openAPISpecification));
-app.use("/api", [composerAPI, personRoutes, userRoutes, customerRoutes]);
+app.use("/api", [composerAPI, personRoutes, userRoutes, customerRoutes, teamRoutes]);
 
 //Create server and listen on port 3000.
-http.createServer(app).listen(app.get("port"), function () {
+http.createServer(app).listen(process.env.PORT || 3000, function () {
   console.log("Application started and listening on port %s", +app.get("port"));
 });
