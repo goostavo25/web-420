@@ -13,7 +13,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const Team = require("../models/roogonzalez-capstone.js");
+const Team = require("../models/roogonzalez-capstone");
 
 /**
  * @openapi
