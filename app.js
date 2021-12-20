@@ -17,8 +17,8 @@ var mongoose = require("mongoose");
 var composerAPI = require("./routes/roogonzalez-composer-routes");
 var personRoutes = require("./routes/roogonzalez-person-routes");
 var userRoutes = require("./routes/roogonzalez-session-routes");
-var customerRoutes = require("./routes/roogonzalez-node-shopper-routes.js");
-var teamRoutes = require("./routes/roogonzalez-capstone-routes.js");
+var customerRoutes = require("./routes/roogonzalez-node-shopper-routes");
+var teamRoutes = require("./routes/roogonzalez-capstone-routes");
 
 //Set Port
 var port = process.env.PORT || 3000;
